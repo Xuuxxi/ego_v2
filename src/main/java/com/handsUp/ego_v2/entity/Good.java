@@ -3,7 +3,6 @@ package com.handsUp.ego_v2.entity;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
-import sun.util.resources.LocaleData;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -38,7 +37,7 @@ public class Good implements Serializable {
 
     private Integer isPassed;
 
-    private LocaleData uploadTime;
+    private LocalDateTime uploadTime;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
