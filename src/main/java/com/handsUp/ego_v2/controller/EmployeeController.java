@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * 模板类
  * @Author: Xuuxxi
  * @Date: 2022/5/3
  */

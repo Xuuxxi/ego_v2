@@ -5,6 +5,7 @@ import com.handsUp.ego_v2.entity.Employee;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
+ * 模板类
  * @Author: Xuuxxi
  * @Date: 2022/5/3
  */

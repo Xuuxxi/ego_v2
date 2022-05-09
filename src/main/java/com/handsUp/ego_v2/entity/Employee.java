@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * 模板类
  * @Author: Xuuxxi
  * @Date: 2022/5/3
  */
