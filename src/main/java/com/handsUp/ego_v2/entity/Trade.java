@@ -2,6 +2,7 @@ package com.handsUp.ego_v2.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
  * @Date: 2022/5/9
  */
 @Data
+@TableName("trade")
 public class Trade implements Serializable {
     private static final long serialVersionUID = 1L;
 

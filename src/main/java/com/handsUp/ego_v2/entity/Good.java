@@ -2,6 +2,7 @@ package com.handsUp.ego_v2.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
  */
 
 @Data
+@TableName("good")
 public class Good implements Serializable {
     private static final long serialVersionUID = 1L;
 
