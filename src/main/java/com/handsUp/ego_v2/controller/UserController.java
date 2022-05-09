@@ -71,6 +71,8 @@ public class UserController {
         String pwd = DigestUtils.md5DigestAsHex("123456".getBytes());
         if(user.getPassword() != null) pwd = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
 
+        user.setPassword(pwd);
+
         userService.save(user);
         return R.success("用户注册成功！");
     }
