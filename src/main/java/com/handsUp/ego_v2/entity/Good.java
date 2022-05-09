@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class Good implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Long goodId;
+    private Long id;
 
     private String goodName;
 
@@ -33,11 +33,7 @@ public class Good implements Serializable {
 
     private String sellerAd;
 
-    private Integer isChecked;
-
     private Integer isPassed;
-
-    private LocalDateTime uploadTime;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;

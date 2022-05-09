@@ -9,31 +9,22 @@ import java.time.LocalDateTime;
 
 /**
  * @Author: Xuuxxi
- * @Date: 2022/5/5
+ * @Date: 2022/5/9
  */
-
 @Data
-public class User implements Serializable {
+public class Trade implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
-    private String userNickName;
+    private Long goodId;
 
-    private String userName;
+    private Long sellerId;
 
-    private String password;
+    private Long buyerId;
 
-    private String userPtUrl;
+    private Integer tradeState;
 
-    private String userInfo;
-
-    private String userAd;
-
-    private Integer isBanned;
-
-    private Long banTime;
-    
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 

@@ -1,6 +1,7 @@
 package com.handsUp.ego_v2.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.handsUp.ego_v2.dto.UserDto;
 import com.handsUp.ego_v2.entity.User;
 
 /**
@@ -8,4 +9,5 @@ import com.handsUp.ego_v2.entity.User;
  * @Date: 2022/5/9
  */
 public interface UserService extends IService<User> {
+    public UserDto getInfo(Long id);
 }

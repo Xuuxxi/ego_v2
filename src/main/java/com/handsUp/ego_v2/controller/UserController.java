@@ -2,15 +2,12 @@ package com.handsUp.ego_v2.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.handsUp.ego_v2.common.R;
-import com.handsUp.ego_v2.entity.Employee;
+import com.handsUp.ego_v2.dto.UserDto;
 import com.handsUp.ego_v2.entity.User;
 import com.handsUp.ego_v2.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +45,7 @@ public class UserController {
         }
 
         log.info("登陆成功");
-        request.getSession().setAttribute("user",user1.getUserId());
+        request.getSession().setAttribute("user",user1.getId());
         return R.success(user1);
     }
 
@@ -67,6 +64,8 @@ public class UserController {
     @PostMapping("/register")
     public R<String> register(@RequestBody User user){
         log.info("新用户注册 {}",user.toString());
+        User user1 = userService.getById(user);
+        if(user1 != null) return R.error("该用户已经存在");
 
         String pwd = DigestUtils.md5DigestAsHex("123456".getBytes());
         if(user.getPassword() != null) pwd = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
@@ -75,5 +74,12 @@ public class UserController {
 
         userService.save(user);
         return R.success("用户注册成功！");
+    }
+
+    @GetMapping("/{id}")
+    public R<UserDto> get(@PathVariable Long id){
+        log.info("getting user by id ...");
+        UserDto userDto = userService.getInfo(id);
+        return R.success(userDto);
     }
 }

@@ -8,33 +8,23 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 模板类
  * @Author: Xuuxxi
- * @Date: 2022/5/3
+ * @Date: 2022/5/9
  */
-
 @Data
-public class Employee implements Serializable {
+public class GoodFlavor implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
-    private String username;
+    private Long goodId;
 
-    private String name;
+    private Long userId;
 
-    private String password;
-
-    private String phone;
-
-    private String sex;
-
-    private String idNumber;//身份证号码
-
-    private Integer status;
-
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     @TableField(fill = FieldFill.INSERT)
