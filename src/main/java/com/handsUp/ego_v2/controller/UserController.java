@@ -58,4 +58,20 @@ public class UserController {
         log.info("注销成功");
         return R.success("注销成功");
     }
+
+    /**
+     * 注册接口
+     * @param user
+     * @return
+     */
+    @PostMapping("/register")
+    public R<String> register(@RequestBody User user){
+        log.info("新用户注册 {}",user.toString());
+
+        String pwd = DigestUtils.md5DigestAsHex("123456".getBytes());
+        if(user.getPassword() != null) pwd = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+
+        userService.save(user);
+        return R.success("用户注册成功！");
+    }
 }
