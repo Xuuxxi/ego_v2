@@ -3,8 +3,9 @@ server:
 spring:
   application:
     name: reggie_take_out
-  main:
-    allow-circular-references: true
+#  希望永远用不上这玩意
+#  main:
+#    allow-circular-references: true
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver

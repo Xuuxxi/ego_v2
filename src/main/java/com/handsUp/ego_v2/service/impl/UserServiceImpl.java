@@ -16,6 +16,7 @@ import com.handsUp.ego_v2.service.UserService;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 
     @Override
+    @Transactional
     public UserDto getInfo(Long id) {
         User user = this.getById(id);
         UserDto userDto = new UserDto();

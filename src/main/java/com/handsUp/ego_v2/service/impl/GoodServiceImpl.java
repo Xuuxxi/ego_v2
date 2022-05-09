@@ -7,6 +7,7 @@ import com.handsUp.ego_v2.entity.Good;
 import com.handsUp.ego_v2.entity.GoodFlavor;
 import com.handsUp.ego_v2.entity.User;
 import com.handsUp.ego_v2.mapper.GoodMapper;
+import com.handsUp.ego_v2.service.GetUserService;
 import com.handsUp.ego_v2.service.GoodFlavorService;
 import com.handsUp.ego_v2.service.GoodService;
 import com.handsUp.ego_v2.service.UserService;
@@ -25,7 +26,7 @@ import java.util.List;
 @Service
 public class GoodServiceImpl extends ServiceImpl<GoodMapper, Good> implements GoodService {
     @Resource
-    private UserService userService;
+    private GetUserService getUserService;
     @Resource
     private GoodFlavorService goodFlavorService;
 
@@ -34,7 +35,7 @@ public class GoodServiceImpl extends ServiceImpl<GoodMapper, Good> implements Go
     public GoodDto getByIdWithUser(Long id) {
         Good good = this.getById(id);
 
-        User user = userService.getById(good.getSellerId());
+        User user = getUserService.getById(good.getSellerId());
 
         GoodDto goodDto = new GoodDto();
         BeanUtils.copyProperties(good,goodDto);

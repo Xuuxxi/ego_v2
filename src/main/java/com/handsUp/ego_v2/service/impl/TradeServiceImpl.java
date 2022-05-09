@@ -6,6 +6,7 @@ import com.handsUp.ego_v2.entity.Good;
 import com.handsUp.ego_v2.entity.Trade;
 import com.handsUp.ego_v2.entity.User;
 import com.handsUp.ego_v2.mapper.TradeMapper;
+import com.handsUp.ego_v2.service.GetUserService;
 import com.handsUp.ego_v2.service.GoodService;
 import com.handsUp.ego_v2.service.TradeService;
 import com.handsUp.ego_v2.service.UserService;
@@ -24,7 +25,7 @@ public class TradeServiceImpl extends ServiceImpl<TradeMapper, Trade> implements
     @Resource
     private GoodService goodService;
     @Resource
-    private UserService userService;
+    private GetUserService getUserService;
 
     @Override
     @Transactional
@@ -33,9 +34,9 @@ public class TradeServiceImpl extends ServiceImpl<TradeMapper, Trade> implements
 
         Good good = goodService.getById(trade.getGoodId());
 
-        User seller = userService.getById(trade.getSellerId());
+        User seller = getUserService.getById(trade.getSellerId());
 
-        User buyer = userService.getById(trade.getBuyerId());
+        User buyer = getUserService.getById(trade.getBuyerId());
 
         TradeDto tradeDto = new TradeDto();
         BeanUtils.copyProperties(trade,tradeDto);
