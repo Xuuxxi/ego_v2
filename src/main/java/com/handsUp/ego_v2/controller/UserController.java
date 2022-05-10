@@ -25,6 +25,7 @@ public class UserController {
 
     @PostMapping("/login")
     public R<User> login(HttpServletRequest request, @RequestBody User user){
+        log.info("用户 "+user.getUserName()+" 登陆");
         String password = user.getPassword();
         password = DigestUtils.md5DigestAsHex(password.getBytes());
 
@@ -64,7 +65,9 @@ public class UserController {
     @PostMapping("/register")
     public R<String> register(@RequestBody User user){
         log.info("新用户注册 {}",user.toString());
-        User user1 = userService.getById(user);
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User :: getUserName,user.getUserName());
+        User user1 = userService.getOne(wrapper);
         if(user1 != null) return R.error("该用户已经存在");
 
         String pwd = DigestUtils.md5DigestAsHex("123456".getBytes());

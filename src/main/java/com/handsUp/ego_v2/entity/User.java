@@ -25,6 +25,7 @@ public class User implements Serializable {
 
     private String userName;
 
+    @TableField(value = "user_pwd")
     private String password;
 
     private String userPtUrl;
