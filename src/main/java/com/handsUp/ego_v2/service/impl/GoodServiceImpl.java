@@ -43,6 +43,7 @@ public class GoodServiceImpl extends ServiceImpl<GoodMapper, Good> implements Go
 
         LambdaQueryWrapper<GoodFlavor> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(GoodFlavor::getGoodId,id);
+        wrapper.orderByDesc(GoodFlavor::getUpdateTime);
 
         int flag = 0;
         List<GoodFlavor> list = goodFlavorService.list(wrapper);

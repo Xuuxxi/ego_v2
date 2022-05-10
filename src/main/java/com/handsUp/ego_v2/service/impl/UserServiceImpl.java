@@ -46,6 +46,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         LambdaQueryWrapper<GoodFlavor> wrapper1 = new LambdaQueryWrapper<>();
         wrapper1.eq(GoodFlavor::getUserId,user.getId());
+        wrapper1.orderByDesc(GoodFlavor::getUpdateTime);
         List<GoodFlavor> goodFlavors = goodFlavorService.list(wrapper1);
 
         List<Good> goods;
@@ -55,10 +56,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         LambdaQueryWrapper<Trade> wrapper2 = new LambdaQueryWrapper<>();
         wrapper2.eq(Trade::getSellerId,user.getId());
+        wrapper2.orderByDesc(Trade::getUpdateTime);
         userDto.setSellers(tradeService.list(wrapper2));
 
         LambdaQueryWrapper<Trade> wrapper3 = new LambdaQueryWrapper<>();
         wrapper3.eq(Trade::getBuyerId,user.getId());
+        wrapper3.orderByDesc(Trade::getUpdateTime);
         userDto.setBuyers(tradeService.list(wrapper3));
 
         return userDto;
