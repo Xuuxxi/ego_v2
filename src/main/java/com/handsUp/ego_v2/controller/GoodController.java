@@ -35,14 +35,14 @@ public class GoodController {
      * @param pageSize
      * @return
      */
-    @GetMapping("/page/{page}/{pageSize}/{name}")
-    public R<Page> page(@PathVariable int page,@PathVariable int pageSize,@PathVariable String name){
+    @GetMapping("/page/{page}/{pageSize}")
+    public R<Page> page(@PathVariable int page,@PathVariable int pageSize,String name){
         log.info("根据商品名字分页查询, page = {}, pageSize = {}",page,pageSize);
 
         Page pageInfo = new Page(page, pageSize);
 
         LambdaQueryWrapper<Good> wrapper = new LambdaQueryWrapper<>();
-        wrapper.like(Good::getGoodName,name);
+        if(name != null)wrapper.like(Good::getGoodName,name);
         //按更新时间降序排列
         wrapper.orderByDesc(Good::getUpdateTime);
 
