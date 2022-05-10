@@ -7,10 +7,7 @@ import com.handsUp.ego_v2.dto.GoodDto;
 import com.handsUp.ego_v2.entity.Good;
 import com.handsUp.ego_v2.service.GoodService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -59,5 +56,17 @@ public class GoodController {
         GoodDto goodDto = goodService.getByIdWithUser(id);
 
         return R.success(goodDto);
+    }
+
+    /**
+     * 添加商品
+     * @param good
+     * @return
+     */
+    @PostMapping
+    public R<String> save(@RequestBody Good good){
+        log.info("save good ...");
+        goodService.save(good);
+        return R.success("save success !");
     }
 }
