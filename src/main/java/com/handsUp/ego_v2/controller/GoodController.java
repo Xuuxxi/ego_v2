@@ -5,11 +5,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.handsUp.ego_v2.common.R;
 import com.handsUp.ego_v2.dto.GoodDto;
 import com.handsUp.ego_v2.entity.Good;
+import com.handsUp.ego_v2.entity.GoodFlavor;
+import com.handsUp.ego_v2.service.GoodFlavorService;
 import com.handsUp.ego_v2.service.GoodService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -23,6 +26,8 @@ import java.util.List;
 public class GoodController {
     @Resource
     private GoodService goodService;
+    @Resource
+    private GoodFlavorService goodFlavorService;
 
     /**
      * 根据商品名字分页查询
@@ -83,5 +88,17 @@ public class GoodController {
         log.info("good update...");
         goodService.updateById(good);
         return R.success("商品信息更新成功！");
+    }
+
+
+    @PostMapping("/{goodId}")
+    public R<String> star(HttpServletRequest request,@PathVariable Long goodId){
+        Long userId = (Long) request.getSession().getAttribute("user");
+        GoodFlavor goodFlavor = new GoodFlavor();
+        goodFlavor.setGoodId(goodId);
+        goodFlavor.setUserId(userId);
+
+        goodFlavorService.save(goodFlavor);
+        return R.success("关注成功!");
     }
 }
