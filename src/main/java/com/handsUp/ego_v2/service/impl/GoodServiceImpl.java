@@ -57,4 +57,15 @@ public class GoodServiceImpl extends ServiceImpl<GoodMapper, Good> implements Go
 
         return goodDto;
     }
+
+    @Override
+    public void removeWithFlavor(List<Long> ids) {
+        for(Long id:ids){
+            LambdaQueryWrapper<GoodFlavor> wrapper = new LambdaQueryWrapper<>();
+            wrapper.eq(GoodFlavor::getGoodId,id);
+            goodFlavorService.remove(wrapper);
+        }
+
+        this.removeByIds(ids);
+    }
 }

@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author: Xuuxxi
@@ -67,6 +68,20 @@ public class GoodController {
     public R<String> save(@RequestBody Good good){
         log.info("save good ...");
         goodService.save(good);
-        return R.success("save success !");
+        return R.success("商品添加成功!");
+    }
+
+    @DeleteMapping
+    public R<String> delete(@RequestParam List<Long> ids){
+        log.info("delete good...");
+        goodService.removeWithFlavor(ids);
+        return R.success("商品删除成功！");
+    }
+
+    @PutMapping
+    public R<String> update(@RequestBody Good good){
+        log.info("good update...");
+        goodService.updateById(good);
+        return R.success("商品信息更新成功！");
     }
 }

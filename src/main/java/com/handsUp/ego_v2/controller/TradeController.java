@@ -2,12 +2,11 @@ package com.handsUp.ego_v2.controller;
 
 import com.handsUp.ego_v2.common.R;
 import com.handsUp.ego_v2.dto.TradeDto;
+import com.handsUp.ego_v2.entity.Trade;
 import com.handsUp.ego_v2.service.TradeService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.ibatis.annotations.Delete;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -28,5 +27,12 @@ public class TradeController {
         TradeDto info = tradeService.getByIdWithInfo(id);
 
         return R.success(info);
+    }
+
+    @PostMapping
+    public R<String> save(@RequestBody Trade trade){
+        log.info("Trade save...");
+        tradeService.save(trade);
+        return R.success("新增交易记录成功!");
     }
 }
