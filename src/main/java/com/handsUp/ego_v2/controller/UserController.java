@@ -1,6 +1,7 @@
 package com.handsUp.ego_v2.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.handsUp.ego_v2.common.JwtUtil;
 import com.handsUp.ego_v2.common.R;
 import com.handsUp.ego_v2.dto.UserDto;
 import com.handsUp.ego_v2.entity.User;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author: Xuuxxi
@@ -47,6 +51,16 @@ public class UserController {
 
         log.info("登陆成功");
         request.getSession().setAttribute("user",user1.getId());
+
+//        Map<String,String> payload = new HashMap<>();
+//        payload.put("user",user1.getId().toString());
+//        String token = JwtUtil.getToken(payload);
+//
+//        Map<String,Object> result = new HashMap<>();
+//        result.put("user",user1);
+//        result.put("token",token);
+
+//        return R.success(result);
         return R.success(user1);
     }
 
