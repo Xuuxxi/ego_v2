@@ -1,7 +1,6 @@
 package com.handsUp.ego_v2.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.handsUp.ego_v2.common.JwtUtil;
 import com.handsUp.ego_v2.common.R;
 import com.handsUp.ego_v2.dto.UserDto;
 import com.handsUp.ego_v2.entity.User;
@@ -12,9 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @Author: Xuuxxi

@@ -5,7 +5,6 @@ import com.handsUp.ego_v2.dto.TradeDto;
 import com.handsUp.ego_v2.entity.Trade;
 import com.handsUp.ego_v2.service.TradeService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
