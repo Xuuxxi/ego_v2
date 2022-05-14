@@ -59,6 +59,7 @@ public class GoodServiceImpl extends ServiceImpl<GoodMapper, Good> implements Go
     }
 
     @Override
+    @Transactional
     public void removeWithFlavor(List<Long> ids) {
         for(Long id:ids){
             LambdaQueryWrapper<GoodFlavor> wrapper = new LambdaQueryWrapper<>();
