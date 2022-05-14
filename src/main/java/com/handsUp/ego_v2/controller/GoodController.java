@@ -73,6 +73,7 @@ public class GoodController {
     @PostMapping
     public R<String> save(@RequestBody Good good){
         log.info("save good ...");
+        good.setIsPassed(0);
         goodService.save(good);
         return R.success("商品添加成功!");
     }

@@ -32,6 +32,7 @@ public class TradeController {
     @PostMapping
     public R<String> save(@RequestBody Trade trade){
         log.info("Trade save...");
+        trade.setTradeState(1);
         tradeService.save(trade);
         return R.success("新增交易记录成功!");
     }
