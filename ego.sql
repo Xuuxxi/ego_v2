@@ -11,11 +11,35 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 10/05/2022 22:12:19
+ Date: 15/05/2022 15:16:49
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for address_book
+-- ----------------------------
+DROP TABLE IF EXISTS `address_book`;
+CREATE TABLE `address_book`  (
+  `id` bigint NOT NULL,
+  `user_id` bigint NOT NULL,
+  `consignee` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sex` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `province` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `city` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `district` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `is_default` int NULL DEFAULT NULL,
+  `create_time` datetime NULL DEFAULT NULL,
+  `update_time` datetime NULL DEFAULT NULL,
+  `create_user` bigint NULL DEFAULT NULL,
+  `update_user` bigint NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_adressbook_user`(`user_id`) USING BTREE,
+  CONSTRAINT `fk_adressbook_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for admin
@@ -69,6 +93,74 @@ CREATE TABLE `good_flavor`  (
   CONSTRAINT `fk_flavor_good_1` FOREIGN KEY (`good_id`) REFERENCES `good` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_flavor_user_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = armscii8 COLLATE = armscii8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for order
+-- ----------------------------
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order`  (
+  `id` bigint NOT NULL,
+  `number` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `status` int NOT NULL,
+  `user_id` bigint NOT NULL,
+  `address_book_id` bigint NULL DEFAULT NULL,
+  `order_time` datetime NULL DEFAULT NULL,
+  `checkout_time` datetime NULL DEFAULT NULL,
+  `pay_method` int NULL DEFAULT NULL,
+  `amount` decimal(10, 0) NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `consignee` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_order_user`(`user_id`) USING BTREE,
+  INDEX `fk_order_adbook`(`address_book_id`) USING BTREE,
+  CONSTRAINT `fk_order_adbook` FOREIGN KEY (`address_book_id`) REFERENCES `address_book` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_order_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for order_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `order_detail`;
+CREATE TABLE `order_detail`  (
+  `id` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `order_id` bigint NOT NULL,
+  `good_id` bigint NOT NULL,
+  `number` int NULL DEFAULT NULL,
+  `amount` decimal(10, 0) NULL DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_dt_order`(`order_id`) USING BTREE,
+  INDEX `fk_dt_good`(`good_id`) USING BTREE,
+  CONSTRAINT `fk_dt_good` FOREIGN KEY (`good_id`) REFERENCES `good` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_dt_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for shopping_cart
+-- ----------------------------
+DROP TABLE IF EXISTS `shopping_cart`;
+CREATE TABLE `shopping_cart`  (
+  `id` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_id` bigint NOT NULL,
+  `good_id` bigint NOT NULL,
+  `number` int NULL DEFAULT NULL,
+  `amount` decimal(10, 0) NULL DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime NULL DEFAULT NULL,
+  `update_time` datetime NULL DEFAULT NULL,
+  `create_user` bigint NULL DEFAULT NULL,
+  `update_user` bigint NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_cart_user`(`user_id`) USING BTREE,
+  INDEX `fk_cart_good`(`good_id`) USING BTREE,
+  CONSTRAINT `fk_cart_good` FOREIGN KEY (`good_id`) REFERENCES `good` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_cart_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for trade
