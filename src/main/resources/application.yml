@@ -1,11 +1,14 @@
 server:
   port: 8080
 spring:
+
   application:
     name: reggie_take_out
-#  希望永远用不上这玩意
+
+  #  希望永远用不上这玩意
 #  main:
 #    allow-circular-references: true
+
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,6 +18,7 @@ spring:
       mysql:
         #刷新空闲时间
         usePingMethod : false
+
 mybatis-plus:
   configuration:
     #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射

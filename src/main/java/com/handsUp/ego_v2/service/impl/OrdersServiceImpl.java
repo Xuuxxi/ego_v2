@@ -82,9 +82,9 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
         orders.setUserName(userInfo.getUserName());
         orders.setConsignee(addressBook.getConsignee());
         orders.setPhone(addressBook.getPhone());
-        orders.setAddress((addressBook.getProvinceName() == null ? "" : addressBook.getProvinceName())
-                + (addressBook.getCityName() == null ? "" : addressBook.getCityName())
-                + (addressBook.getDistrictName() == null ? "" : addressBook.getDistrictName())
+        orders.setAddress((addressBook.getProvince() == null ? "" : addressBook.getProvince())
+                + (addressBook.getCity() == null ? "" : addressBook.getCity())
+                + (addressBook.getDistrict() == null ? "" : addressBook.getDistrict())
                 + (addressBook.getDetail() == null ? "" : addressBook.getDetail()));
 
         this.save(orders);
