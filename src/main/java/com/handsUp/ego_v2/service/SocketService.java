@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface SocketService extends IService<SocketData> {
 
-    public List<SocketData> getDataList(Long self,Long target);
+    List<SocketData> getDataList(Long self,Long target);
 
-    public List<Long> getUserList(Long userId);
+    List<Long> getUserList(Long userId);
+
+    void setRead(Long self,Long target);
 }

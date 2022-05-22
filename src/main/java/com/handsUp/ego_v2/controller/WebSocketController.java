@@ -61,6 +61,7 @@ public class WebSocketController {
         SocketData socketData = JSON.parseObject(data,SocketData.class);
         if("".equals(socketData.getMsg())){     //请求读取历史记录
             readAllText(socketData.getFrom(), socketData.getTo());
+            socketService.setRead(socketData.getTo(), socketData.getFrom());
         }else {     //用户发送消息
             Long from = socketData.getFrom();
             Long to = socketData.getTo();

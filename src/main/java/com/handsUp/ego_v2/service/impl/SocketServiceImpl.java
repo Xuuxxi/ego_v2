@@ -1,6 +1,8 @@
 package com.handsUp.ego_v2.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.handsUp.ego_v2.entity.SocketData;
 import com.handsUp.ego_v2.mapper.SocketMapper;
@@ -44,5 +46,13 @@ public class SocketServiceImpl extends ServiceImpl<SocketMapper, SocketData> imp
         List<Long> userList = new ArrayList<>();
         socketDataList.forEach(o->userList.add(o.getFrom()));
         return userList;
+    }
+
+    @Transactional
+    @Override
+    public void setRead(Long self, Long target) {
+        LambdaUpdateWrapper<SocketData> updateWrapper=new LambdaUpdateWrapper<>();
+        updateWrapper.eq(SocketData::getFrom,target).eq(SocketData::getTo,self).set(SocketData::getIsRead,1);
+        socketService.update(updateWrapper);
     }
 }
