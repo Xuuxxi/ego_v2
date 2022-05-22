@@ -23,6 +23,6 @@ public class SocketData implements Serializable {
 
     private Integer isRead;
 
-    private String jsonMsg;
+    private String msg;
 
 }

@@ -59,7 +59,7 @@ public class WebSocketController {
     @OnMessage
     public void onMessage(String data){
         SocketData socketData = JSON.parseObject(data,SocketData.class);
-        if("".equals(socketData.getJsonMsg())){     //请求读取历史记录
+        if("".equals(socketData.getMsg())){     //请求读取历史记录
             readAllText(socketData.getFrom(), socketData.getTo());
         }else {     //用户发送消息
             Long from = socketData.getFrom();
