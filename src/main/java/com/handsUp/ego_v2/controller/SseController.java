@@ -24,18 +24,20 @@ import java.util.function.Consumer;
  * @Date: 2022/5/22
  */
 
+
 @RestController
 @Slf4j
 @RequestMapping("/sse/{userId}")
 public class SseController {
 
     @Resource
-    SocketService socketService;
+    private SocketService socketService;
 
     public static Map<Long,SseController> sseControllerMap = new ConcurrentHashMap<>();
 
     public static Map<Long , SseEmitter> sseEmitterMap = new ConcurrentHashMap<>();
 
+//    连接SSE
     @GetMapping("/connect")
     public  SseEmitter connect(@PathVariable("userId") Long userId) throws IOException {
         log.info("SSE: #connect : "+userId);
@@ -63,6 +65,8 @@ public class SseController {
         };
     }
 
+
+//检查未读消息
     @Async
     @GetMapping("/check")
     public void noticeAll(@PathVariable("userId") Long userId) throws IOException{
@@ -70,6 +74,7 @@ public class SseController {
         sseEmitterMap.get(userId).send(JSON.toJSONString(R.success(targetList)));
     }
 
+//    有用户发送消息时目标用户需要受到提醒时调用
     @Async
     public void noticeOne(Long self,Long target) throws IOException{
         List<Long> targetList = new ArrayList<>();

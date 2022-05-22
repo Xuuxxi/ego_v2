@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.handsUp.ego_v2.entity.SocketData;
 import com.handsUp.ego_v2.mapper.SocketMapper;
 import com.handsUp.ego_v2.service.SocketService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +23,8 @@ import java.util.List;
 @Service
 public class SocketServiceImpl extends ServiceImpl<SocketMapper, SocketData> implements SocketService {
 
-    @Resource
-    private SocketService socketService;
+    @Autowired
+    SocketMapper socketMapper;
 
     @Transactional
     @Override
@@ -32,7 +33,7 @@ public class SocketServiceImpl extends ServiceImpl<SocketMapper, SocketData> imp
         queryWrapper.eq(SocketData::getFrom,self).eq(SocketData::getTo,target).and(
                 i->i.eq(SocketData::getFrom,target).eq(SocketData::getTo,self)
         ).orderByAsc(SocketData::getSendTime);
-        List<SocketData> dataList = socketService.list(queryWrapper);
+        List<SocketData> dataList = socketMapper.selectList(queryWrapper);
         return dataList;
     }
 
@@ -42,7 +43,7 @@ public class SocketServiceImpl extends ServiceImpl<SocketMapper, SocketData> imp
         LambdaQueryWrapper<SocketData> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SocketData::getTo,userId).eq(SocketData::getIsRead,0)
                 .select(SocketData::getFrom).orderByDesc(SocketData::getSendTime);
-        List<SocketData> socketDataList = socketService.list(queryWrapper);
+        List<SocketData> socketDataList = socketMapper.selectList(queryWrapper);
         List<Long> userList = new ArrayList<>();
         socketDataList.forEach(o->userList.add(o.getFrom()));
         return userList;
@@ -53,6 +54,6 @@ public class SocketServiceImpl extends ServiceImpl<SocketMapper, SocketData> imp
     public void setRead(Long self, Long target) {
         LambdaUpdateWrapper<SocketData> updateWrapper=new LambdaUpdateWrapper<>();
         updateWrapper.eq(SocketData::getFrom,target).eq(SocketData::getTo,self).set(SocketData::getIsRead,1);
-        socketService.update(updateWrapper);
+        socketMapper.update(null,updateWrapper);
     }
 }

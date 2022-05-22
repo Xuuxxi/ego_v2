@@ -39,6 +39,7 @@ public class WebSocketController {
 
     private Session session;
 
+//    socket连接时调用
     @OnOpen
     public void onOpen(Session session, @PathParam("userId") Long userId){
         log.info("Socket open: "+userId);
@@ -48,6 +49,7 @@ public class WebSocketController {
         log.info("Socket total: "+sockets.size());
     }
 
+//    socket关闭时调用
     @OnClose
     public void onClose(@PathParam("userId") String userId){
         log.info("Socket close: "+userId);
@@ -56,6 +58,7 @@ public class WebSocketController {
         log.info("Socket total: "+userId);
     }
 
+//    后端接收到socket消息时调用
     @OnMessage
     public void onMessage(String data){
         SocketData socketData = JSON.parseObject(data,SocketData.class);
@@ -66,16 +69,16 @@ public class WebSocketController {
             Long from = socketData.getFrom();
             Long to = socketData.getTo();
             log.info(socketData.getSendTime()+": A message from##"+from+"## to ##"+to+"##");
-            if(sockets.get(to)!=null){
+            if(sockets.get(to)!=null){      //目标用户存在socket，直接发送并存入数据库
                 socketData.setIsRead(1);
                 socketService.save(socketData);
                 List<SocketData> dataList = socketService.getDataList(from,to);
                 send(to,dataList);
                 send(from,dataList);
-            }else {
+            }else {                         //用户目标不在socket，查看sse是否在线
                 socketData.setIsRead(0);
                 socketService.save(socketData);
-                if(SseController.sseEmitterMap.get(to)!=null){
+                if(SseController.sseEmitterMap.get(to)!=null){          //sse在线提醒
                     try {
                         SseController.sseControllerMap.get(to).noticeOne(from,to);
                     } catch (IOException e) {
@@ -88,14 +91,14 @@ public class WebSocketController {
 
     }
 
-    @Async
+//    发送消息
     public void send(Long target,List<SocketData> dataList){
         SocketDto result = new SocketDto();
         result.setDataList(dataList);
         sessions.get(target).getAsyncRemote().sendText(JSON.toJSONString(result));
     }
 
-    @Async
+//读取历史记录
     public void readAllText(Long self,Long opposite){
         List<SocketData> dataList = socketService.getDataList(self, opposite);
         send(self,dataList);
