@@ -50,7 +50,6 @@ public class SseController {
             log.info("SSE total: "+sseEmitterMap.size());
         });
         sseEmitter.onError(errorCallBack(userId));
-        sseEmitter.send("Connect to server!");
 
         return sseEmitter;
     }
