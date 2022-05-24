@@ -17,7 +17,7 @@ import java.io.IOException;
  * @Date: 2022/5/3
  */
 
-@WebFilter(filterName = "loginCheckFilter",urlPatterns = "/*")
+@WebFilter(filterName = "loginCheckFilter",urlPatterns = "/*",asyncSupported = true)
 @Slf4j
 public class LoginCheckFilter implements Filter {
     public static final AntPathMatcher PATH_MATCHER = new AntPathMatcher();
