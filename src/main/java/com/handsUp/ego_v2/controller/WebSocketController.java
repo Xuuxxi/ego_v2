@@ -1,10 +1,14 @@
 package com.handsUp.ego_v2.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.handsUp.ego_v2.common.SpringUtil;
 import com.handsUp.ego_v2.dto.SocketDto;
 import com.handsUp.ego_v2.entity.SocketData;
 import com.handsUp.ego_v2.service.SocketService;
+import com.handsUp.ego_v2.service.UserService;
+import com.handsUp.ego_v2.service.impl.SocketServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -30,8 +34,10 @@ import java.util.concurrent.ConcurrentHashMap;
 @ServerEndpoint("/websocket/{userId}")
 public class WebSocketController {
 
-    @Resource
-    SocketService socketService;
+    SocketServiceImpl socketService = SpringUtil.getBean(SocketServiceImpl.class);
+
+    @Autowired
+    UserService userService;
 
     public static Map<Long,WebSocketController> sockets = new ConcurrentHashMap<>();
 

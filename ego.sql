@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 15/05/2022 15:16:49
+ Date: 25/05/2022 00:29:28
 */
 
 SET NAMES utf8mb4;
@@ -160,6 +160,18 @@ CREATE TABLE `shopping_cart`  (
   INDEX `fk_cart_good`(`good_id`) USING BTREE,
   CONSTRAINT `fk_cart_good` FOREIGN KEY (`good_id`) REFERENCES `good` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_cart_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for socket_data
+-- ----------------------------
+DROP TABLE IF EXISTS `socket_data`;
+CREATE TABLE `socket_data`  (
+  `from` bigint NOT NULL,
+  `to` bigint NOT NULL,
+  `send_time` datetime NOT NULL,
+  `msg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `is_read` int NOT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
