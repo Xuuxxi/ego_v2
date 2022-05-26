@@ -18,10 +18,10 @@ public class SocketData implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("from")
+    @TableField("origin")
     private Long from;
 
-    @TableField("to")
+    @TableField("target")
     private Long to;
 
     @TableField("send_time")

@@ -26,24 +26,23 @@ import java.time.LocalDateTime;
 @EnableTransactionManagement
 class EgoV2ApplicationTests {
 
-    @Autowired
-    SocketMapper socketMapper;
+
 
     @Autowired
     SocketService socketService;
 
 
     @Test
-    void test(){
+    void test01(){
 
         SocketData socketData = new SocketData();
         socketData.setFrom(123L);
         socketData.setTo(456L);
-        socketData.setSendTime(LocalDateTime.now());
+        socketData.setSendTime(null);
         socketData.setMsg("hello");
         socketData.setIsRead(1);
 
-        socketMapper.insert(socketData);
+        socketService.save(socketData);
 
     }
 }

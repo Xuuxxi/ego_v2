@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 25/05/2022 00:29:28
+ Date: 26/05/2022 14:02:49
 */
 
 SET NAMES utf8mb4;
@@ -167,11 +167,11 @@ CREATE TABLE `shopping_cart`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `socket_data`;
 CREATE TABLE `socket_data`  (
-  `from` bigint NOT NULL,
-  `to` bigint NOT NULL,
-  `send_time` datetime NOT NULL,
-  `msg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `is_read` int NOT NULL
+  `origin` bigint NOT NULL,
+  `target` bigint NOT NULL,
+  `send_time` datetime NULL DEFAULT NULL,
+  `msg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `is_read` int NULL DEFAULT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
