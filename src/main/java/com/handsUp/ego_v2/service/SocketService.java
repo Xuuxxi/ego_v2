@@ -12,4 +12,6 @@ public interface SocketService extends IService<SocketData> {
     List<Long> getUserList(Long userId);
 
     void setRead(Long self,Long target);
+
+    List<Long> getAllUserList(Long userId);
 }

@@ -82,4 +82,11 @@ public class SseController {
         sseEmitterMap.get(target).send(JSON.toJSONString(R.success(targetList)));
     }
 
+    @Async
+    @GetMapping("/target")
+    public void getAllTarget(@PathVariable("userId") Long userId) throws IOException{
+        List<Long> targetList = socketService.getAllUserList(userId);
+        sseEmitterMap.get(userId).send(JSON.toJSONString(R.success(targetList)));
+    }
+
 }

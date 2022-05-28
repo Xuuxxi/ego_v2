@@ -56,4 +56,27 @@ public class SocketServiceImpl extends ServiceImpl<SocketMapper, SocketData> imp
         updateWrapper.eq(SocketData::getFrom,target).eq(SocketData::getTo,self).set(SocketData::getIsRead,1);
         socketMapper.update(null,updateWrapper);
     }
+
+    @Transactional
+
+    @Override
+    public List<Long> getAllUserList(Long userId) {
+        LambdaQueryWrapper<SocketData> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SocketData::getTo,userId)
+                .select(SocketData::getFrom)
+                .and(i->i.eq(SocketData::getFrom,userId).select(SocketData::getTo))
+                .orderByDesc(SocketData::getSendTime);
+        List<SocketData> socketDataList = socketMapper.selectList(queryWrapper);
+        List<Long> userList = new ArrayList<>();
+        socketDataList.forEach(o-> {
+            if(o.getFrom()!=null){
+                userList.add(o.getFrom());
+            }
+            if(o.getTo()!=null){
+                userList.add(o.getTo());
+            }
+
+        });
+        return userList;
+    }
 }
