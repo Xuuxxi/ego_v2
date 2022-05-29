@@ -96,4 +96,16 @@ public class UserController {
         UserDto userDto = userService.getInfo(id);
         return R.success(userDto);
     }
+
+    /**
+     * 更新用户接口
+     * @param user
+     * @return
+     */
+    @PutMapping
+    public R<String> update(@RequestBody User user){
+        log.info("update user...");
+        userService.updateById(user);
+        return R.success("update success...");
+    }
 }
