@@ -7,11 +7,15 @@ import java.util.List;
 
 public interface SocketService extends IService<SocketData> {
 
-    List<SocketData> getDataList(Long self,Long target);
+    //设置已读
+    void setRead(Long self,Long opposite);
 
-    List<Long> getUserList(Long userId);
+    //获得消息列表
+    List<SocketData> getDataList(Long from,Long to);
 
-    void setRead(Long self,Long target);
+    //检查未读列表
+    List<Long> check(Long self);
 
-    List<Long> getAllUserList(Long userId);
+    //获得用户所有已建立会话的用户列表
+    List<Long> target(Long self);
 }

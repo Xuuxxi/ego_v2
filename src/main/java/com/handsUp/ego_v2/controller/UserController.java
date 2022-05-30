@@ -48,15 +48,6 @@ public class UserController {
         log.info("登陆成功");
         request.getSession().setAttribute("user",user1.getId());
 
-//        Map<String,String> payload = new HashMap<>();
-//        payload.put("user",user1.getId().toString());
-//        String token = JwtUtil.getToken(payload);
-//
-//        Map<String,Object> result = new HashMap<>();
-//        result.put("user",user1);
-//        result.put("token",token);
-
-//        return R.success(result);
         return R.success(user1);
     }
 

@@ -41,21 +41,25 @@ public class SseController {
     @GetMapping("/connect")
     public  SseEmitter connect(@PathVariable("userId") Long userId) throws IOException {
         log.info("SSE: #connect : "+userId);
+
         SseEmitter sseEmitter = new SseEmitter();
         sseControllerMap.put(userId,this);
         sseEmitterMap.put(userId,sseEmitter);
         log.info("SSE total: "+sseEmitterMap.size());
+
         sseEmitter.onCompletion(()->{
             log.info("SSE: #disconnect : "+userId);
             sseEmitterMap.remove(userId);
             sseControllerMap.remove(userId);
             log.info("SSE total: "+sseEmitterMap.size());
         });
+
         sseEmitter.onError(errorCallBack(userId));
 
         return sseEmitter;
     }
 
+    //onError 返回封装
     public Consumer<Throwable> errorCallBack(Long userId){
         return throwable -> {
             log.info("Sever Send Event: #error : "+userId);
@@ -66,27 +70,30 @@ public class SseController {
     }
 
 
-//检查未读消息
+//      检查未读消息
+    //  返回未读用户列表
     @Async
     @GetMapping("/check")
-    public void noticeAll(@PathVariable("userId") Long userId) throws IOException{
-        List<Long> targetList = socketService.getUserList(userId);
+    public void check(@PathVariable("userId") Long userId) throws IOException{
+        List<Long> targetList = socketService.check(userId);
+        sseEmitterMap.get(userId).send(JSON.toJSONString(R.success(targetList)));
+    }
+
+
+//    获取与原用户建立过会话的目标用户列表
+    @Async
+    @GetMapping("/target")
+    public void getAllTarget(@PathVariable("userId") Long userId) throws IOException{
+        List<Long> targetList = socketService.target(userId);
         sseEmitterMap.get(userId).send(JSON.toJSONString(R.success(targetList)));
     }
 
 //    有用户发送消息时目标用户需要受到提醒时调用
     @Async
-    public void noticeOne(Long self,Long target) throws IOException{
+    public void notice(Long self,Long target) throws IOException{
         List<Long> targetList = new ArrayList<>();
         targetList.add(self);
         sseEmitterMap.get(target).send(JSON.toJSONString(R.success(targetList)));
-    }
-
-    @Async
-    @GetMapping("/target")
-    public void getAllTarget(@PathVariable("userId") Long userId) throws IOException{
-        List<Long> targetList = socketService.getAllUserList(userId);
-        sseEmitterMap.get(userId).send(JSON.toJSONString(R.success(targetList)));
     }
 
 }

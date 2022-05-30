@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -35,14 +36,7 @@ class EgoV2ApplicationTests {
     @Test
     void test01(){
 
-        SocketData socketData = new SocketData();
-        socketData.setFrom(123L);
-        socketData.setTo(456L);
-        socketData.setSendTime(null);
-        socketData.setMsg("hello");
-        socketData.setIsRead(1);
-
-        socketService.save(socketData);
+        System.out.println(socketService.target(789L));
 
     }
 }

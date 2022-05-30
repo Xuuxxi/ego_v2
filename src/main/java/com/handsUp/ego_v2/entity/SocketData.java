@@ -19,10 +19,10 @@ public class SocketData implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableField("origin")
-    private Long from;
+    private Long origin;
 
     @TableField("target")
-    private Long to;
+    private Long target;
 
     @TableField("send_time")
     private LocalDateTime sendTime;
