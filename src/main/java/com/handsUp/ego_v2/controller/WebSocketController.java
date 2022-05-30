@@ -34,6 +34,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @ServerEndpoint("/websocket/{userId}")
 public class WebSocketController {
 
+    //主动注入
     SocketServiceImpl socketService = SpringUtil.getBean(SocketServiceImpl.class);
 
     @Autowired
