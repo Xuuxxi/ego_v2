@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 26/05/2022 14:02:49
+ Date: 30/05/2022 18:56:41
 */
 
 SET NAMES utf8mb4;
@@ -37,8 +37,7 @@ CREATE TABLE `address_book`  (
   `create_user` bigint NULL DEFAULT NULL,
   `update_user` bigint NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `fk_adressbook_user`(`user_id`) USING BTREE,
-  CONSTRAINT `fk_adressbook_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  INDEX `fk_adressbook_user`(`user_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -61,18 +60,16 @@ CREATE TABLE `good`  (
   `good_info` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `good_types` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `good_pt_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `seller_id` bigint NOT NULL,
-  `seller_ad` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `is_passed` int NOT NULL,
+  `seller_id` bigint NULL DEFAULT NULL,
+  `seller_ad` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `is_passed` int NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_user` bigint NULL DEFAULT NULL,
   `update_user` bigint NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_good_user_1`(`seller_id`) USING BTREE,
-  INDEX `fk_good_user_2`(`seller_ad`) USING BTREE,
-  CONSTRAINT `fk_good_user_1` FOREIGN KEY (`seller_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_good_user_2` FOREIGN KEY (`seller_ad`) REFERENCES `user` (`user_ad`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  INDEX `fk_good_user_2`(`seller_ad`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = armscii8 COLLATE = armscii8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -89,9 +86,7 @@ CREATE TABLE `good_flavor`  (
   `update_user` bigint NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_flavor_good_1`(`good_id`) USING BTREE,
-  INDEX `fk_flavor_user_1`(`user_id`) USING BTREE,
-  CONSTRAINT `fk_flavor_good_1` FOREIGN KEY (`good_id`) REFERENCES `good` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_flavor_user_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  INDEX `fk_flavor_user_1`(`user_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = armscii8 COLLATE = armscii8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -115,9 +110,7 @@ CREATE TABLE `order`  (
   `consignee` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_order_user`(`user_id`) USING BTREE,
-  INDEX `fk_order_adbook`(`address_book_id`) USING BTREE,
-  CONSTRAINT `fk_order_adbook` FOREIGN KEY (`address_book_id`) REFERENCES `address_book` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_order_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  INDEX `fk_order_adbook`(`address_book_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -134,9 +127,7 @@ CREATE TABLE `order_detail`  (
   `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_dt_order`(`order_id`) USING BTREE,
-  INDEX `fk_dt_good`(`good_id`) USING BTREE,
-  CONSTRAINT `fk_dt_good` FOREIGN KEY (`good_id`) REFERENCES `good` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_dt_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  INDEX `fk_dt_good`(`good_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -157,9 +148,7 @@ CREATE TABLE `shopping_cart`  (
   `update_user` bigint NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_cart_user`(`user_id`) USING BTREE,
-  INDEX `fk_cart_good`(`good_id`) USING BTREE,
-  CONSTRAINT `fk_cart_good` FOREIGN KEY (`good_id`) REFERENCES `good` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_cart_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  INDEX `fk_cart_good`(`good_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
