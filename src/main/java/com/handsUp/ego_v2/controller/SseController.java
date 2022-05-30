@@ -89,6 +89,7 @@ public class SseController {
     }
 
 //    有用户发送消息时目标用户需要受到提醒时调用
+    //在WebSocketController中使用
     @Async
     public void notice(Long self,Long target) throws IOException{
         List<Long> targetList = new ArrayList<>();
