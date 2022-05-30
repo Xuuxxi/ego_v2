@@ -1,6 +1,7 @@
 package com.handsUp.ego_v2.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.handsUp.ego_v2.common.BaseContext;
 import com.handsUp.ego_v2.common.R;
 import com.handsUp.ego_v2.dto.UserDto;
 import com.handsUp.ego_v2.entity.User;
@@ -46,6 +47,7 @@ public class UserController {
         }
 
         log.info("登陆成功");
+        BaseContext.setCurrentId(user1.getId());
         request.getSession().setAttribute("user",user1.getId());
 
         return R.success(user1);

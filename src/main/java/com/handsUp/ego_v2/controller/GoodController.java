@@ -2,6 +2,7 @@ package com.handsUp.ego_v2.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.handsUp.ego_v2.common.BaseContext;
 import com.handsUp.ego_v2.common.R;
 import com.handsUp.ego_v2.dto.GoodDto;
 import com.handsUp.ego_v2.entity.Good;
@@ -94,8 +95,8 @@ public class GoodController {
 
 
     @PostMapping("/{goodId}")
-    public R<String> star(HttpServletRequest request,@PathVariable Long goodId){
-        Long userId = (Long) request.getSession().getAttribute("user");
+    public R<String> star(@PathVariable Long goodId){
+        Long userId = BaseContext.getCurrentId();
         GoodFlavor goodFlavor = new GoodFlavor();
         goodFlavor.setGoodId(goodId);
         goodFlavor.setUserId(userId);
