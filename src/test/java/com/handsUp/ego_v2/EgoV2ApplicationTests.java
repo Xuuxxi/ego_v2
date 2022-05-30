@@ -36,8 +36,7 @@ class EgoV2ApplicationTests {
     @Test
     void test01(){
 
-        List<Long> userId = socketService.getUserList(123L);
-        System.out.println(userId.toString());
+        System.out.println(socketService.target(789L));
 
     }
 }

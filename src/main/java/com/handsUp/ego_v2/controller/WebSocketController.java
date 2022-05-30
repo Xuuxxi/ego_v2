@@ -69,24 +69,30 @@ public class WebSocketController {
     public void onMessage(String data){
         SocketData socketData = JSON.parseObject(data,SocketData.class);
         if("".equals(socketData.getMsg())){     //请求读取历史记录
-            readAllText(socketData.getFrom(), socketData.getTo());
-            socketService.setRead(socketData.getTo(), socketData.getFrom());
+            history(socketData.getOrigin(), socketData.getTarget());
+
+            //将读取过的消息记录为已读
+            socketService.setRead(socketData.getTarget(), socketData.getOrigin());
         }else {     //用户发送消息
-            Long from = socketData.getFrom();
-            Long to = socketData.getTo();
+            Long from = socketData.getOrigin();
+            Long to = socketData.getTarget();
             log.info(socketData.getSendTime()+": A message from##"+from+"## to ##"+to+"##");
             if(sockets.get(to)!=null){      //目标用户存在socket，直接发送并存入数据库
                 socketData.setIsRead(1);
                 socketService.save(socketData);
+
+                //获取打包的信息列表
                 List<SocketData> dataList = socketService.getDataList(from,to);
+
                 send(to,dataList);
                 send(from,dataList);
+
             }else {                         //用户目标不在socket，查看sse是否在线
                 socketData.setIsRead(0);
                 socketService.save(socketData);
                 if(SseController.sseEmitterMap.get(to)!=null){          //sse在线提醒
                     try {
-                        SseController.sseControllerMap.get(to).noticeOne(from,to);
+                        SseController.sseControllerMap.get(to).notice(from,to);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -97,17 +103,19 @@ public class WebSocketController {
 
     }
 
-//    发送消息
+//    封装send用于通过发送消息
     public void send(Long target,List<SocketData> dataList){
         SocketDto result = new SocketDto();
         result.setDataList(dataList);
         sessions.get(target).getAsyncRemote().sendText(JSON.toJSONString(result));
     }
 
-//读取历史记录
-    public void readAllText(Long self,Long opposite){
+//    用户打开会话时找到历史记录
+    public void history(Long self,Long opposite){
         List<SocketData> dataList = socketService.getDataList(self, opposite);
-        send(self,dataList);
+        if(!dataList.isEmpty()) {
+            send(self, dataList);
+        }
     }
 
 
