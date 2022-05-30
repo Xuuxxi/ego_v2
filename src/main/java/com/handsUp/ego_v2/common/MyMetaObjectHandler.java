@@ -44,7 +44,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         log.info("update 自动填充...");
 
-        metaObject.setValue("updateTime", BaseContext.getCurrentId());
+        metaObject.setValue("updateTime", LocalDateTime.now());
         metaObject.setValue("updateUser", BaseContext.getCurrentId());
     }
 }

@@ -98,7 +98,14 @@ public class UserController {
     @PutMapping
     public R<String> update(@RequestBody User user){
         log.info("update user...");
-        userService.updateById(user);
+        System.out.println(user);
+        try {
+            userService.updateById(user);
+        }catch (Exception e){
+            e.printStackTrace();
+            return R.error("update failed");
+        }
+
         return R.success("update success...");
     }
 }
