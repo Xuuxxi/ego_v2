@@ -42,7 +42,7 @@ public class SseController {
     public  SseEmitter connect(@PathVariable("userId") Long userId) throws IOException {
         log.info("SSE: #connect : "+userId);
 
-        SseEmitter sseEmitter = new SseEmitter();
+        SseEmitter sseEmitter = new SseEmitter(0L);
         sseControllerMap.put(userId,this);
         sseEmitterMap.put(userId,sseEmitter);
         log.info("SSE total: "+sseEmitterMap.size());
