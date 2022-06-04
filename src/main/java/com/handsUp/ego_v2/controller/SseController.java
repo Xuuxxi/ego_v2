@@ -76,7 +76,7 @@ public class SseController {
     @GetMapping("/check")
     public void check(@PathVariable("userId") Long userId) throws IOException{
         List<Long> targetList = socketService.check(userId);
-        sseEmitterMap.get(userId).send(R.success(targetList.toString()));
+        sseEmitterMap.get(userId).send(R.success(targetList));
     }
 
 
@@ -85,7 +85,7 @@ public class SseController {
     @GetMapping("/target")
     public void getAllTarget(@PathVariable("userId") Long userId) throws IOException{
         List<Long> targetList = socketService.target(userId);
-        sseEmitterMap.get(userId).send(R.success(targetList.toString()));
+        sseEmitterMap.get(userId).send(R.success(targetList));
     }
 
 //    有用户发送消息时目标用户需要受到提醒时调用
@@ -94,7 +94,7 @@ public class SseController {
     public void notice(Long self,Long target) throws IOException{
         List<Long> targetList = new ArrayList<>();
         targetList.add(self);
-        sseEmitterMap.get(target).send(R.success(targetList.toString()));
+        sseEmitterMap.get(target).send(R.success(targetList));
     }
 
 }
