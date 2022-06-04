@@ -17,6 +17,7 @@ spring:
       url: jdbc:mysql://localhost:3306/ego?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: root
       password: 123456
+#      password: Handsup666.
       mysql:
         #刷新空闲时间
         usePingMethod : false
