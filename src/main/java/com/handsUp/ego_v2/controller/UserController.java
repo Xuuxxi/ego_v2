@@ -82,6 +82,12 @@ public class UserController {
         userService.save(user);
         return R.success("用户注册成功！");
     }
+    @GetMapping("/info/{id}")
+    public R<User> getUserInfo(@PathVariable Long id){
+        log.info("get user info");
+        User user = userService.getById(id);
+        return R.success(user);
+    }
 
     @GetMapping("/{id}")
     public R<UserDto> get(@PathVariable Long id){
