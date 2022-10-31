@@ -8,7 +8,6 @@ import com.handsUp.ego_v2.dto.OrdersDto;
 import com.handsUp.ego_v2.entity.Orders;
 import com.handsUp.ego_v2.service.OrdersService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

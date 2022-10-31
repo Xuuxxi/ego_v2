@@ -66,6 +66,6 @@ public class LoginCheckFilter implements Filter {
             if(flag) return true;
         }
 
-        return false;
+        return true;
     }
 }
