@@ -7,10 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/14
- */
+// for dbs final test
 @Data
 public class AddressBook implements Serializable {
 

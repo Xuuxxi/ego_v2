@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/14
- */
+// for dbs final test
 @RestController
 @Slf4j
 @RequestMapping("/addressBook")
@@ -24,10 +21,7 @@ public class AddressBookController {
     @Resource
     private AddressBookService addressBookService;
 
-    /**
-     * 获取当前用户所有地址
-     * @return
-     */
+    // for dbs final test
     @GetMapping("/list")
     public R<List<AddressBook>> list(){
         log.info("list addressBook...");
@@ -43,11 +37,7 @@ public class AddressBookController {
         return R.success(list);
     }
 
-    /**
-     * 保存新地址
-     * @param addressBook
-     * @return
-     */
+    // for dbs final test
     @PostMapping
     public R<AddressBook> save(@RequestBody AddressBook addressBook){
         log.info("saving addressBook ...");
@@ -57,10 +47,7 @@ public class AddressBookController {
         return R.success(addressBook);
     }
 
-    /**
-     * 设置默认地址
-     * @return
-     */
+    // for dbs final test
     @GetMapping("/default")
     public R<AddressBook> getDefault(){
         log.info("getting default...");
@@ -76,11 +63,7 @@ public class AddressBookController {
         else  return R.error("没有默认地址");
     }
 
-    /**
-     * 更改默认地址
-     * @param addressBook
-     * @return
-     */
+    // for dbs final test
     @PutMapping("/default")
     public R<AddressBook> setDefault(@RequestBody AddressBook addressBook){
         log.info("set default...");
@@ -100,11 +83,7 @@ public class AddressBookController {
         return R.success(addressBook);
     }
 
-    /**
-     * 根据id查找地址
-     * @param id
-     * @return
-     */
+    // for dbs final test
     @GetMapping("/{id}")
     public R<AddressBook> getAdBook(@PathVariable Long id){
         log.info("getting adBook...");
@@ -115,11 +94,7 @@ public class AddressBookController {
         return R.success(addressBook);
     }
 
-    /**
-     * 更新地址
-     * @param addressBook
-     * @return
-     */
+    // for dbs final test
     @PutMapping
     public R<String> update(@RequestBody AddressBook addressBook){
         log.info("update address info...");
@@ -127,12 +102,7 @@ public class AddressBookController {
         return R.success("更新成功！");
     }
 
-    /**
-     * 删除地址
-     * 可批量删除
-     * @param ids
-     * @return
-     */
+    // for dbs final test
     @DeleteMapping
     public R<String> delete(@RequestParam List<Long> ids){
         log.info("delete address info...");

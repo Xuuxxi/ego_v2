@@ -13,10 +13,7 @@ import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/14
- */
+// for dbs final test
 @RestController
 @Slf4j
 @RequestMapping("/shoppingCart")
@@ -24,33 +21,25 @@ public class ShoppingCartController {
     @Resource
     private ShoppingCartService shoppingCartService;
 
-    /**
-     * 查找当前用户购物车里的所有物品
-     * @return
-     */
-    @GetMapping("/list")
-    public R<List<ShoppingCart>> list(){
+    // for dbs final test
+    @GetMapping("/list/{userId}")
+    public R<List<ShoppingCart>> list(@PathVariable Long userId){
         log.info("shopping cart loading...");
 
         LambdaQueryWrapper<ShoppingCart> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(ShoppingCart::getUserId, BaseContext.getCurrentId());
+        wrapper.eq(ShoppingCart::getUserId, userId);
         wrapper.orderByDesc(ShoppingCart::getCreateTime);
 
         List<ShoppingCart> list = shoppingCartService.list(wrapper);
         return R.success(list);
     }
 
-    /**
-     * 向购物车中添加物品
-     * @param shoppingCart
-     * @return
-     */
+    // for dbs final test
     @PostMapping("/add")
     public R<ShoppingCart> add(@RequestBody ShoppingCart shoppingCart){
         log.info("add ing...");
 
-        Long userId = BaseContext.getCurrentId();
-        shoppingCart.setUserId(userId);
+        Long userId = shoppingCart.getUserId();
 
         LambdaQueryWrapper<ShoppingCart> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(ShoppingCart::getUserId,userId);
@@ -74,16 +63,13 @@ public class ShoppingCartController {
         return R.success(one);
     }
 
-    /**
-     * 清空购物车
-     * @return
-     */
-    @DeleteMapping("/clean")
-    public R<String> delete(){
+    // for dbs final test
+    @DeleteMapping("/clean/{userId}")
+    public R<String> delete(@PathVariable Long userId){
         log.info("delete shoppingCart...");
 
         LambdaQueryWrapper<ShoppingCart> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(ShoppingCart::getUserId,BaseContext.getCurrentId());
+        wrapper.eq(ShoppingCart::getUserId, userId);
 
         shoppingCartService.remove(wrapper);
         return R.success("delete success!");

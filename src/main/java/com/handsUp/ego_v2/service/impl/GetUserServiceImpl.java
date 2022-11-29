@@ -6,10 +6,7 @@ import com.handsUp.ego_v2.mapper.UserMapper;
 import com.handsUp.ego_v2.service.GetUserService;
 import org.springframework.stereotype.Service;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 @Service
 public class GetUserServiceImpl extends ServiceImpl<UserMapper, User> implements GetUserService {
 }

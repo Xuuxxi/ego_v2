@@ -5,10 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerIntercept
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/4
- */
+// for dbs final test
 
 @Configuration
 public class MybatisPlusConfig {

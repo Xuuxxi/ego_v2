@@ -16,10 +16,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 
 @RestController
 @Slf4j
@@ -30,12 +27,7 @@ public class GoodController {
     @Resource
     private GoodFlavorService goodFlavorService;
 
-    /**
-     * 根据商品名字分页查询
-     * @param page
-     * @param pageSize
-     * @return
-     */
+    // for dbs final test
     @GetMapping("/page/{page}/{pageSize}")
     public R<Page> page(@PathVariable int page,@PathVariable int pageSize,String name,String categoryName){
         log.info("根据商品名字分页查询, page = {}, pageSize = {}",page,pageSize);
@@ -53,11 +45,7 @@ public class GoodController {
         return R.success(pageInfo);
     }
 
-    /**
-     * 根据商品id查询商品 + 卖家
-     * @param id
-     * @return
-     */
+    // for dbs final test
     @GetMapping("/{id}")
     public R<GoodDto> getGood(@PathVariable Long id){
         log.info("get goodInfo ...");
@@ -66,11 +54,7 @@ public class GoodController {
         return R.success(goodDto);
     }
 
-    /**
-     * 添加商品
-     * @param good
-     * @return
-     */
+    // for dbs final test
     @PostMapping
     public R<String> save(@RequestBody Good good){
         log.info("save good ...");

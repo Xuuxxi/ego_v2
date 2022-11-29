@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 @RestController
 @Slf4j
 @RequestMapping("/trade")

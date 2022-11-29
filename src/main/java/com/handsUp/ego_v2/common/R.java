@@ -5,10 +5,7 @@ import lombok.Data;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/3
- */
+// for dbs final test
 @Data
 public class R<T> {
     private Integer code;

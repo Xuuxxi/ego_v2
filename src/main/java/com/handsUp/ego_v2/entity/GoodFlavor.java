@@ -8,10 +8,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 @Data
 @TableName("good_flavor")
 public class GoodFlavor implements Serializable {

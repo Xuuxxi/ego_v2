@@ -1,9 +1,6 @@
 package com.handsUp.ego_v2.common;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/7
- */
+// for dbs final test
 public class CustomException extends RuntimeException{
     public CustomException(String msg){
         super(msg);

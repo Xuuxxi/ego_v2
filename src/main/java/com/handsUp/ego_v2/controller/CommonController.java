@@ -16,47 +16,35 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.UUID;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/8
- */
+// for dbs final test
 
 @Slf4j
 @RequestMapping("/common")
 @RestController
 public class CommonController {
-    /**
-     * 动态获取路径
-     * @return
-     * @throws IOException
-     */
+    // for dbs final test
     private String getFileBasePath() throws IOException {
-        File file = new File("");
+//        File file = new File("");
+//
+//        String path = file.getCanonicalPath() + "\\src\\main\\resources\\templates";
+//
+//        File dir = new File(path);
+//        if(!dir.exists()) dir.mkdir();
 
-        String path = file.getCanonicalPath() + "\\src\\main\\resources\\templates";
-
-        File dir = new File(path);
-        if(!dir.exists()) dir.mkdir();
-
-        return path;
+        return "/home/xuuxxi/egoFile/";
     }
 
-    /**
-     * 文件上传
-     * 参数名字要和前端定义的相同，否则无法接受参数
-     *
-     * @param file
-     * @return
-     */
+    // for dbs final test
     @PostMapping("/upload")
     public R<String> upload(MultipartFile file){
-        String basePath;
-        try {
-           basePath = getFileBasePath();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return R.error("获取路径时候出错");
-        }
+        String basePath = "/home/xuuxxi/egoFile/";
+
+//        try {
+//           basePath = getFileBasePath();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return R.error("获取路径时候出错");
+//        }
 
         String originalFilename = file.getOriginalFilename();
         assert originalFilename != null;
@@ -65,7 +53,7 @@ public class CommonController {
         String newName = UUID.randomUUID().toString() + suffix;
 
         try {
-            file.transferTo(new File(basePath + "\\" + newName));
+            file.transferTo(new File(basePath + newName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,17 +61,13 @@ public class CommonController {
         return R.success(newName);
     }
 
-    /**
-     * 文件下载
-     * @param name
-     * @param response
-     */
+    // for dbs final test
     @GetMapping("/download")
     public void download(String name, HttpServletResponse response){
         try{
-            String basePath = getFileBasePath();
+            String basePath = "/home/xuuxxi/egoFile/";
 
-            FileInputStream inputStream = new FileInputStream(new File(basePath + "\\" + name));
+            FileInputStream inputStream = new FileInputStream(new File(basePath + name));
             ServletOutputStream outputStream = response.getOutputStream();
 
             response.setContentType("image/jpeg");

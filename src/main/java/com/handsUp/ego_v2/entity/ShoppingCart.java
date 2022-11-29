@@ -8,10 +8,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/14
- */
+// for dbs final test
 
 @Data
 public class ShoppingCart implements Serializable {

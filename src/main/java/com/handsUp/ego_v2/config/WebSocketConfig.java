@@ -5,10 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
-/**
- * @Author: superdog
- * @Date: 2022/5/22
- */
+// for dbs final test
 
 @Configuration
 public class WebSocketConfig {

@@ -5,10 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.handsUp.ego_v2.dto.OrdersDto;
 import com.handsUp.ego_v2.entity.Orders;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/14
- */
+// for dbs final test
 public interface OrdersService extends IService<Orders> {
     public void submit(Orders orders);
 

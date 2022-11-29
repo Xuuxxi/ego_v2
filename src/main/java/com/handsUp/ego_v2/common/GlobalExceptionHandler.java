@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/4
- */
+// for dbs final test
 @Slf4j
 @ResponseBody
 @ControllerAdvice(annotations = {RestController.class, Controller.class})

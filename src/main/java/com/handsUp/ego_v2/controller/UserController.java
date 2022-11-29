@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 @Slf4j
 @RestController
 @RequestMapping("/user")
@@ -60,11 +57,7 @@ public class UserController {
         return R.success("注销成功");
     }
 
-    /**
-     * 注册接口
-     * @param user
-     * @return
-     */
+    // for dbs final test
     @PostMapping("/register")
     public R<String> register(@RequestBody User user){
         log.info("新用户注册 {}",user.toString());
@@ -96,11 +89,7 @@ public class UserController {
         return R.success(userDto);
     }
 
-    /**
-     * 更新用户接口
-     * @param user
-     * @return
-     */
+    // for dbs final test
     @PutMapping
     public R<String> update(@RequestBody User user){
         log.info("update user...");

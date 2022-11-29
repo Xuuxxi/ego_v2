@@ -3,9 +3,6 @@ package com.handsUp.ego_v2.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.handsUp.ego_v2.entity.GoodFlavor;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 public interface GoodFlavorService extends IService<GoodFlavor> {
 }

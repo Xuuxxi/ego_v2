@@ -5,10 +5,7 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * @Author: superdog
- * @Date: 2022/5/22
- */
+// for dbs final test
 
 @Data
 public class SocketDto {

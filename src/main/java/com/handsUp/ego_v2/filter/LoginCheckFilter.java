@@ -12,10 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/3
- */
+// for dbs final test
 
 @WebFilter(filterName = "loginCheckFilter",urlPatterns = "/*",asyncSupported = true)
 @Slf4j

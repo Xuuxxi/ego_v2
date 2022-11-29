@@ -7,10 +7,7 @@ import com.handsUp.ego_v2.mapper.AddressBookMapper;
 import com.handsUp.ego_v2.service.AddressBookService;
 import org.springframework.stereotype.Service;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/14
- */
+// for dbs final test
 @Service
 public class AddressBookServiceImpl extends ServiceImpl<AddressBookMapper, AddressBook> implements AddressBookService {
 }

@@ -16,10 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 @Service
 public class TradeServiceImpl extends ServiceImpl<TradeMapper, Trade> implements TradeService {
     @Resource

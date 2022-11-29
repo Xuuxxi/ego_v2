@@ -19,10 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 @Service
 public class GoodServiceImpl extends ServiceImpl<GoodMapper, Good> implements GoodService {
     @Resource

@@ -11,18 +11,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 import java.util.List;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/3
- */
+// for dbs final test
 
 @Slf4j
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
-    /**
-     * 解决Long精度转化问题
-     * @param converters
-     */
+    // for dbs final test
     @Override
     protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         log.info("消息转化器启动...");

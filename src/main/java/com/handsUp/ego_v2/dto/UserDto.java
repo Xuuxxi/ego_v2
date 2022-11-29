@@ -7,10 +7,7 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 @Data
 public class UserDto extends User {
     private List<Good> goods;

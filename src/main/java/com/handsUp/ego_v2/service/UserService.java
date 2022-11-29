@@ -4,10 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.handsUp.ego_v2.dto.UserDto;
 import com.handsUp.ego_v2.entity.User;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 public interface UserService extends IService<User> {
     public UserDto getInfo(Long id);
 }

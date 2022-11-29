@@ -107,10 +107,7 @@ R<String> save(@RequestBody Trade trade)
 ## /list
 
 ```
-/**
- * 获取当前用户所有地址
- * @return
- */
+// for dbs final test
 @GetMapping("/list")
 public R<List<AddressBook>> list()
 ```
@@ -118,11 +115,7 @@ public R<List<AddressBook>> list()
 ## @PostMapping
 
 ```
-/**
- * 保存新地址
- * @param addressBook
- * @return
- */
+// for dbs final test
 @PostMapping
 public R<AddressBook> save(@RequestBody AddressBook addressBook)
 ```
@@ -130,10 +123,7 @@ public R<AddressBook> save(@RequestBody AddressBook addressBook)
 ## /default
 
 ```
-/**
- * 设置默认地址
- * @return
- */
+// for dbs final test
 @GetMapping("/default")
 public R<AddressBook> getDefault()
 ```
@@ -141,11 +131,7 @@ public R<AddressBook> getDefault()
 ## /default
 
 ```
-/**
- * 更改默认地址
- * @param addressBook
- * @return
- */
+// for dbs final test
 @PutMapping("/default")
 public R<AddressBook> setDefault(@RequestBody AddressBook addressBook)
 ```
@@ -153,11 +139,7 @@ public R<AddressBook> setDefault(@RequestBody AddressBook addressBook)
 ## /{id}
 
 ```
-/**
- * 根据id查找地址
- * @param id
- * @return
- */
+// for dbs final test
 @GetMapping("/{id}")
 public R<AddressBook> getAdBook(@PathVariable Long id)
 ```
@@ -165,11 +147,7 @@ public R<AddressBook> getAdBook(@PathVariable Long id)
 ## @PutMapping
 
 ```
-/**
- * 更新地址
- * @param addressBook
- * @return
- */
+// for dbs final test
 @PutMapping
 public R<String> update(@RequestBody AddressBook addressBook)
 ```
@@ -177,12 +155,7 @@ public R<String> update(@RequestBody AddressBook addressBook)
 ## @DeleteMapping
 
 ```
-/**
- * 删除地址
- * 可批量删除
- * @param ids
- * @return
- */
+// for dbs final test
 @DeleteMapping
 public R<String> delete(@RequestParam List<Long> ids)
 ```
@@ -192,10 +165,7 @@ public R<String> delete(@RequestParam List<Long> ids)
 ## /list
 
 ```
-/**
- * 查找当前用户购物车里的所有物品
- * @return
- */
+// for dbs final test
 @GetMapping("/list")
 public R<List<ShoppingCart>> list()
 ```
@@ -203,11 +173,7 @@ public R<List<ShoppingCart>> list()
 ## /add
 
 ```
-/**
-* 向购物车中添加物品
-* @param shoppingCart
-* @return
-*/
+// for dbs final test
 @PostMapping("/add")
 public R<ShoppingCart> add(@RequestBody ShoppingCart shoppingCart)
 ```
@@ -228,13 +194,7 @@ public R<String> delete()
 ## /page
 
 ```
-/**
- * 查询所有订单信息/根据订单号查询
- * @param page
- * @param pageSize
- * @param number
- * @return
- */
+// for dbs final test
 @GetMapping("/page")
 public R<Page> page(int page, int pageSize,Long number)
 ```
@@ -242,11 +202,7 @@ public R<Page> page(int page, int pageSize,Long number)
 ## /submit
 
 ```
-/**
- * 订单提交
- * @param orders
- * @return
- */
+// for dbs final test
 @PostMapping("/submit")
 public R<String> order(@RequestBody Orders orders)
 ```
@@ -254,12 +210,7 @@ public R<String> order(@RequestBody Orders orders)
 ## /userPage
 
 ```
-/**
- * 查看用户历史订单
- * @param page
- * @param pageSize
- * @return
- */
+// for dbs final test
 @GetMapping("/userPage")
 public R<Page> userPage(int page,int pageSize)
 ```
@@ -267,11 +218,7 @@ public R<Page> userPage(int page,int pageSize)
 ## @PutMapping
 
 ```
-/**
- * 改变配送状态
- * @param orders
- * @return
- */
+// for dbs final test
 @PutMapping
 public R<String> update(@RequestBody Orders orders)
 ```
@@ -279,11 +226,7 @@ public R<String> update(@RequestBody Orders orders)
 ## /{number}
 
 ```
-/**
- * 根据订单号获取买卖家、商品信息、订单信息
- * @param number
- * @return
- */
+// for dbs final test
 @GetMapping("/{number}")
 public R<OrdersDto> getDto(@PathVariable Long number)
 ```

@@ -7,10 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * @Author: superdog
- * @Date: 2022/5/22
- */
+// for dbs final test
 
 @Data
 @TableName("socket_data")

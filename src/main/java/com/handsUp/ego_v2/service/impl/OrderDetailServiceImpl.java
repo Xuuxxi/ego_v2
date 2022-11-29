@@ -7,10 +7,7 @@ import com.handsUp.ego_v2.mapper.OrderDetailMapper;
 import com.handsUp.ego_v2.service.OrderDetailService;
 import org.springframework.stereotype.Service;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/14
- */
+// for dbs final test
 @Service
 public class OrderDetailServiceImpl extends ServiceImpl<OrderDetailMapper, OrderDetail> implements OrderDetailService {
 }

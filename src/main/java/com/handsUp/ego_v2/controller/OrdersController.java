@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/14
- */
+// for dbs final test
 @RestController
 @Slf4j
 @RequestMapping("/order")
@@ -23,13 +20,7 @@ public class OrdersController {
     @Resource
     private OrdersService ordersService;
 
-    /**
-     * 查询所有订单信息/根据订单号查询
-     * @param page
-     * @param pageSize
-     * @param number
-     * @return
-     */
+    // for dbs final test
     @GetMapping("/page")
     public R<Page> page(int page, int pageSize,Long number){
         log.info("order page...");

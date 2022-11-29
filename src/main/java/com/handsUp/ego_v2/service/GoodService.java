@@ -6,10 +6,7 @@ import com.handsUp.ego_v2.entity.Good;
 
 import java.util.List;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 public interface GoodService extends IService<Good> {
     public GoodDto getByIdWithUser(Long id);
 

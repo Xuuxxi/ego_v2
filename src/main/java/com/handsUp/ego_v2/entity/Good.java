@@ -9,10 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/5
- */
+// for dbs final test
 
 @Data
 @TableName("good")

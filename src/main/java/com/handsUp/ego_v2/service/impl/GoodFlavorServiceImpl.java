@@ -7,10 +7,7 @@ import com.handsUp.ego_v2.service.GoodFlavorService;
 import com.handsUp.ego_v2.service.GoodService;
 import org.springframework.stereotype.Service;
 
-/**
- * @Author: Xuuxxi
- * @Date: 2022/5/9
- */
+// for dbs final test
 @Service
 public class GoodFlavorServiceImpl extends ServiceImpl<GoodFlavorMapper, GoodFlavor> implements GoodFlavorService {
 }
